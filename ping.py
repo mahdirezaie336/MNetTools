@@ -1,7 +1,7 @@
 import sys
 import nmap
 import socket
-import time
+
 
 # Get args or show prompt
 if len(sys.argv) > 1:

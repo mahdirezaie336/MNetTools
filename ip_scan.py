@@ -16,7 +16,7 @@ try:
     hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 
     # Sort hosts by ip
-    hosts_list = sorted(hosts_list, key=lambda x: x[0])
+    hosts_list = sorted(hosts_list, key=lambda x: [int(i) for i in x[0].split('.')])
 
     # Print active hosts
     for host, status in hosts_list:

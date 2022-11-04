@@ -1,6 +1,7 @@
 import sys
 import nmap
 import socket
+import time
 
 
 # Get args or show prompt
@@ -12,7 +13,7 @@ else:
 # Check if host is valid
 try:
     ip = socket.gethostbyname(host)
-    print("Pinging " + host + " (" + ip + ")")
+    print(f"Pinging {host} ({ip})")
     nm = nmap.PortScanner()
 
     # Ping host 4 times
@@ -20,7 +21,8 @@ try:
         nm.scan(hosts=ip, arguments='-n -sP -PE -PA21,23,80,3389')
         hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
         for host, status in hosts_list:
-            print('{0}:{1}'.format(host, status))
+            print(f'Reply from {host}')
+        time.sleep(1)
 
 except socket.gaierror:
     print("Ping: Unknown host")

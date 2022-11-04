@@ -20,7 +20,7 @@ try:
 
     # Print active hosts
     for host, status in hosts_list:
-        print('{0}:{1}'.format(host, status))
+        print(f'{host} -> LIVE')
 except KeyboardInterrupt:
     print("IP scan: Interrupted")
     sys.exit(0)

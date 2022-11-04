@@ -12,7 +12,7 @@ else:
 try:
     # Resolve host to ip
     ip = socket.gethostbyname(host)
-    print("Scanning " + host + " (" + ip + ")")
+    print(f"Scanning {host} ({ip})")
 
     # Find open ports of host
     nm = nmap.PortScanner()
@@ -22,7 +22,7 @@ try:
 
     # Print open ports
     for port, status in ports_list:
-        print('{0}:{1}'.format(port, status))
+        print(f'{port} -> {status}')
 except socket.gaierror:
     print("Port scan: Unknown host")
 except KeyboardInterrupt:

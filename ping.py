@@ -18,10 +18,12 @@ try:
 
     # Ping host 4 times
     for i in range(4):
-        nm.scan(hosts=ip, arguments='-n -sP -PE -PA21,23,80,3389')
+        # The switch -sn disables port scan and is used for ping hosts
+        nm.scan(hosts=ip, arguments='-sn')
         hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
+
         for host, status in hosts_list:
-            print(f'Reply from {host}')
+            print(f'Reply from {host} time={nm.scanstats()["elapsed"]}s')
         time.sleep(1)
 
 except socket.gaierror:

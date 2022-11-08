@@ -1,0 +1,5 @@
+Scanning 89.43.0.2 (89.43.0.2)
+Port 53 -> open/tcp
+Port 113 -> closed/tcp
+Port 443 -> open/tcp
+Port 53 -> open/udp

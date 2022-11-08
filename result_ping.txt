@@ -1,0 +1,5 @@
+Pinging 89.43.0.2 (89.43.0.2)
+Reply from 89.43.0.2 time=0.03s
+Reply from 89.43.0.2 time=0.02s
+Reply from 89.43.0.2 time=0.02s
+Reply from 89.43.0.2 time=0.02s

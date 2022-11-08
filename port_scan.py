@@ -18,10 +18,12 @@ def port_scan(host):
         nm.scan(hosts=ip, arguments='-n -sU -sS -Pn -p 1-1024')
 
         # Print open ports
-        for i in nm[ip]['tcp']:
-            print(f"Port {i} -> {nm[ip]['tcp'][i]['state']}/tcp")
-        for i in nm[ip]['udp']:
-            print(f"Port {i} -> {nm[ip]['udp'][i]['state']}/udp")
+        if 'tcp' in nm[ip]:
+            for i in nm[ip]['tcp']:
+                print(f"Port {i} -> {nm[ip]['tcp'][i]['state']}/tcp")
+        if 'udp' in nm[ip]:
+            for i in nm[ip].get('udp'):
+                print(f"Port {i} -> {nm[ip]['udp'][i]['state']}/udp")
 
     except socket.gaierror:
         print("Port scan: Unknown host")

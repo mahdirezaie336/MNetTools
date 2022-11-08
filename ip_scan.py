@@ -12,7 +12,10 @@ else:
 try:
     # Find active hosts
     nm = nmap.PortScanner()
-    nm.scan(hosts=ip_range, arguments='-n -sP -PE -PA21,23,80,3389')
+
+    # Adding -n disables DNS resolution which makes it faster
+    # Ip range scan uses -sn to disable port scan
+    nm.scan(hosts=ip_range, arguments='-n -sn')
     hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 
     # Sort hosts by ip

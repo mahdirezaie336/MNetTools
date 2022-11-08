@@ -16,13 +16,18 @@ try:
 
     # Find open ports of host
     nm = nmap.PortScanner()
-    nm.scan(hosts=ip, arguments='-n -p 1-1024')
-    ports_list = [(x, nm[ip]['tcp'][x]['state']) for x in nm[ip]['tcp']]
-    ports_list = sorted(ports_list, key=lambda x: x[0])
+
+    # Add -sU makes it scan UDP ports and -sS makes it scan TCP ports
+    # Also, -Pn disables host discovery to make scanning faster
+    # -O enables OS fingerprint scan
+    nm.scan(hosts=ip, arguments='-n -sU -sS -Pn -p 1-1024')
 
     # Print open ports
-    for port, status in ports_list:
-        print(f'{port} -> {status}')
+    for i in nm[ip]['tcp']:
+        print(f"Port {i} -> {nm[ip]['tcp'][i]['state']}/tcp")
+    for i in nm[ip]['udp']:
+        print(f"Port {i} -> {nm[ip]['udp'][i]['state']}/udp")
+
 except socket.gaierror:
     print("Port scan: Unknown host")
 except KeyboardInterrupt:

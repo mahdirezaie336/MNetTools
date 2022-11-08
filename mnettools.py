@@ -5,15 +5,14 @@ from ping import ping
 
 
 def main(command, host):
-    while True:
-        if command == 'port_scan':
-            port_scan(host)
-        elif command == 'ip_scan':
-            ip_scan(host)
-        elif command == 'ping':
-            ping(host)
-        else:
-            print("Invalid command")
+    if command == 'port_scan':
+        port_scan(host)
+    elif command == 'ip_scan':
+        ip_scan(host)
+    elif command == 'ping':
+        ping(host)
+    else:
+        print("Invalid command")
 
 
 if __name__ == '__main__':
@@ -21,7 +20,23 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         command = sys.argv[1]
         host = sys.argv[2]
+        main(command, host)
     else:
-        command, host = input("mnettools > ").split()
-
-    main(command, host)
+        while True:
+            inputs = input("mnettools > ").split()
+            if len(inputs) == 1:
+                command = inputs[0]
+                if command == 'exit':
+                    sys.exit(0)
+                elif command == 'help':
+                    print("Commands: port_scan, ip_scan, ping, help, exit")
+                else:
+                    print("Invalid command")
+            elif len(inputs) == 2:
+                command, host = inputs[0], inputs[1]
+                if command in ['port_scan', 'ip_scan', 'ping']:
+                    main(command, host)
+                else:
+                    print("Invalid command")
+            else:
+                print("Invalid Input")

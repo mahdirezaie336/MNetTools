@@ -11,8 +11,6 @@ def main(command, host):
         ip_scan(host)
     elif command == 'ping':
         ping(host)
-    else:
-        print("Invalid command")
 
 
 if __name__ == '__main__':
